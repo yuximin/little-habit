@@ -1,4 +1,6 @@
-# Uncomment the next line to define a global platform for your project
+source 'https://github.com/CocoaPods/Specs.git'
+source 'https://github.com/yuximin/Specs.git'
+
 platform :ios, '13.0'
 
 target 'little-habit' do
@@ -11,5 +13,9 @@ target 'little-habit' do
   # Modules
   pod 'Hall', :path => './Modules/Hall/'
   pod 'Mediator-Hall', :path => './Modules/Mediator-Hall/'
+  
+  # Pods
+  pod 'XMKit'
+  pod 'SnapKit'
 
 end

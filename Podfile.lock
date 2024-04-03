@@ -1,13 +1,25 @@
 PODS:
-  - Hall (0.1.0)
+  - Hall (0.1.0):
+    - SnapKit
+    - XMKit
   - Mediator (0.1.0)
   - Mediator-Hall (0.1.0):
     - Mediator
+  - SnapKit (5.7.1)
+  - XMKit (0.1.5)
 
 DEPENDENCIES:
   - Hall (from `./Modules/Hall/`)
   - Mediator (from `./Frameworks/Mediator/`)
   - Mediator-Hall (from `./Modules/Mediator-Hall/`)
+  - SnapKit
+  - XMKit
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - SnapKit
+  https://github.com/yuximin/Specs.git:
+    - XMKit
 
 EXTERNAL SOURCES:
   Hall:
@@ -18,10 +30,12 @@ EXTERNAL SOURCES:
     :path: "./Modules/Mediator-Hall/"
 
 SPEC CHECKSUMS:
-  Hall: e7f90b149708575ed63fd5233f721cdb0b2c3c31
+  Hall: 0fc86faa44f5656d8d59d26cc70428e220efc631
   Mediator: f8df91015aaf7521b72954fc0d07cbdf738aa7e3
   Mediator-Hall: b1afa62aef2493c49a3db8312b550c51f3c43d02
+  SnapKit: d612e99e678a2d3b95bf60b0705ed0a35c03484a
+  XMKit: 937e76248f419c7536767e57ff90d035faa81e88
 
-PODFILE CHECKSUM: 669834bdd426184427fd79703ca28720e9118060
+PODFILE CHECKSUM: f0e03cc4594bdd6b8660ff4cf2578a3799bd8d61
 
 COCOAPODS: 1.15.2
