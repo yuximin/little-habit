@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Mediator
+import Mediator_Hall
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -15,11 +17,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        let customViewController = UIViewController()
-        customViewController.view.backgroundColor = .yellow
-        
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = customViewController
+        window.rootViewController = Mediator.shared.hall.hallTabBarController()
         window.makeKeyAndVisible()
         self.window = window
     }

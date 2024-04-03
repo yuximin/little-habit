@@ -1,3 +1,27 @@
-PODFILE CHECKSUM: 4e80f20ae5788cf8b3bfd5e95d232cea5c313a86
+PODS:
+  - Hall (0.1.0)
+  - Mediator (0.1.0)
+  - Mediator-Hall (0.1.0):
+    - Mediator
+
+DEPENDENCIES:
+  - Hall (from `./Modules/Hall/`)
+  - Mediator (from `./Frameworks/Mediator/`)
+  - Mediator-Hall (from `./Modules/Mediator-Hall/`)
+
+EXTERNAL SOURCES:
+  Hall:
+    :path: "./Modules/Hall/"
+  Mediator:
+    :path: "./Frameworks/Mediator/"
+  Mediator-Hall:
+    :path: "./Modules/Mediator-Hall/"
+
+SPEC CHECKSUMS:
+  Hall: e7f90b149708575ed63fd5233f721cdb0b2c3c31
+  Mediator: f8df91015aaf7521b72954fc0d07cbdf738aa7e3
+  Mediator-Hall: b1afa62aef2493c49a3db8312b550c51f3c43d02
+
+PODFILE CHECKSUM: 669834bdd426184427fd79703ca28720e9118060
 
 COCOAPODS: 1.15.2

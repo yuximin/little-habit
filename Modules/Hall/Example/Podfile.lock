@@ -1,0 +1,16 @@
+PODS:
+  - Hall (0.1.0)
+
+DEPENDENCIES:
+  - Hall (from `../`)
+
+EXTERNAL SOURCES:
+  Hall:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Hall: 3d4290ae5613df0b7da51347635b72f3ec5f06c9
+
+PODFILE CHECKSUM: 8bbefa9a52ac569e41461e976aaa67e47ec6e1f5
+
+COCOAPODS: 1.15.2

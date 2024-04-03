@@ -1,0 +1,16 @@
+PODS:
+  - Mediator (0.1.0)
+
+DEPENDENCIES:
+  - Mediator (from `../`)
+
+EXTERNAL SOURCES:
+  Mediator:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Mediator: fa0406becf27207b4581bf4ac2999766c2a98ee4
+
+PODFILE CHECKSUM: eace07d759604fa59fe93e225dcec6c912ac020b
+
+COCOAPODS: 1.15.2

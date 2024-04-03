@@ -1,0 +1,16 @@
+PODS:
+  - Mediator-Hall (0.1.0)
+
+DEPENDENCIES:
+  - Mediator-Hall (from `../`)
+
+EXTERNAL SOURCES:
+  Mediator-Hall:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Mediator-Hall: d837cef8322adbe161b1d5030f23ba49c7ec5b4e
+
+PODFILE CHECKSUM: 826c0e7bdacd7fd18b4daf95e2bb45fe7af2935f
+
+COCOAPODS: 1.15.2
