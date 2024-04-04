@@ -17,7 +17,7 @@ target 'little-habit' do
   pod 'Mediator-Triviality', :path => './Modules/Mediator-Triviality/'
   
   # Pods
-  pod 'XMKit'
+  pod 'XMKit', :source => 'https://github.com/yuximin/Specs.git'
   pod 'SnapKit'
 
 end
