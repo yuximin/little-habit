@@ -1,0 +1,16 @@
+PODS:
+  - Triviality (0.1.0)
+
+DEPENDENCIES:
+  - Triviality (from `../`)
+
+EXTERNAL SOURCES:
+  Triviality:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Triviality: 0b1c208edfd633d68bcf2e5bc703be1cafd42975
+
+PODFILE CHECKSUM: 7bcf737575d270b19539eda82802113cf0d2a393
+
+COCOAPODS: 1.15.2

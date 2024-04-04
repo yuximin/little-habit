@@ -13,6 +13,8 @@ target 'little-habit' do
   # Modules
   pod 'Hall', :path => './Modules/Hall/'
   pod 'Mediator-Hall', :path => './Modules/Mediator-Hall/'
+  pod 'Triviality', :path => './Modules/Triviality/'
+  pod 'Mediator-Triviality', :path => './Modules/Mediator-Triviality/'
   
   # Pods
   pod 'XMKit'

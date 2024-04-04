@@ -1,0 +1,16 @@
+PODS:
+  - Mediator-Triviality (0.1.0)
+
+DEPENDENCIES:
+  - Mediator-Triviality (from `../`)
+
+EXTERNAL SOURCES:
+  Mediator-Triviality:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Mediator-Triviality: 40f81be77e05a26e779bbea4c14c7d067600bc4a
+
+PODFILE CHECKSUM: 8a6e8ba393658766976ea00e378e8227568ae5af
+
+COCOAPODS: 1.15.2

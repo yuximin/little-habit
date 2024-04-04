@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Mediator
+import Mediator_Triviality
 
 class HallTabBarViewController: UITabBarController {
     
@@ -28,8 +30,17 @@ class HallTabBarViewController: UITabBarController {
     
     private func setupControllers() {
         for item in self.hallTabBarItem {
-            let viewController = UIViewController()
-            viewController.view.backgroundColor = .white
+            let viewController: UIViewController
+            switch item {
+            case .habit:
+                viewController = UIViewController()
+                viewController.view.backgroundColor = .white
+            case .triviality:
+                viewController = Mediator.shared.triviality.trivialityViewController()
+            case .me:
+                viewController = UIViewController()
+                viewController.view.backgroundColor = .white
+            }
             viewController.title = item.title
             let navigationController = UINavigationController(rootViewController: viewController)
             self.addChild(navigationController)

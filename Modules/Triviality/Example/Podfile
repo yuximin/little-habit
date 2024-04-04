@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '10.0'
+
+target 'Triviality_Example' do
+  pod 'Triviality', :path => '../'
+
+  target 'Triviality_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

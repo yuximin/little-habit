@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '10.0'
+
+target 'Mediator-Triviality_Example' do
+  pod 'Mediator-Triviality', :path => '../'
+
+  target 'Mediator-Triviality_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
