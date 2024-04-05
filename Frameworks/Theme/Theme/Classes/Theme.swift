@@ -5,7 +5,7 @@
 //  Created by apple on 2024/4/5.
 //
 
-import Foundation
+import UIKit
 
 public enum Theme {
     case light
@@ -13,10 +13,12 @@ public enum Theme {
     
     public static var current: Theme = .light
     
-    public static var backgroundColor = BackgroundColor()
-    public static var textColor = TextColor()
+    public static let themeColor = ThemeColor()
+    public static let textColor = TextColor()
+    public static let font = Font()
+    public static let image = Image()
     
-    public class BackgroundColor {
+    public class ThemeColor {
         public var normal: UIColor {
             switch Theme.current {
             case .light:
@@ -53,6 +55,17 @@ public enum Theme {
             case .dark:
                 return UIColor(red: 170.0 / 255.0, green: 170.0 / 255.0, blue: 170.0 / 255.0, alpha: 1) // #AAAAAA
             }
+        }
+    }
+    
+    public struct Font {
+        public var navTitle: UIFont { .systemFont(ofSize: 20, weight: .bold) }
+        public var navItem: UIFont { .systemFont(ofSize: 16) }
+    }
+    
+    public struct Image {
+        public var navBarClose: UIImage? {
+            UIImage(systemName: "xmark.circle.fill")?.withTintColor(Theme.textColor.primary, renderingMode: .alwaysOriginal)
         }
     }
 }
