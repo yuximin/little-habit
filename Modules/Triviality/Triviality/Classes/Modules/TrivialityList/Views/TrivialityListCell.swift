@@ -9,7 +9,13 @@ import UIKit
 import XMKit
 import Theme
 
+protocol TrivialityListCellDelegate: AnyObject {
+    func trivialityListCellDidSelectRecord(_ cell: TrivialityListCell)
+}
+
 class TrivialityListCell: UITableViewCell, Reusable {
+    
+    weak var delegate: TrivialityListCellDelegate?
     
     var model: TrivialityItemModel? {
         didSet {
@@ -39,6 +45,7 @@ class TrivialityListCell: UITableViewCell, Reusable {
         plateView.addSubview(iconImageView)
         plateView.addSubview(titleLabel)
         plateView.addSubview(lastTimeLabel)
+        plateView.addSubview(recordButton)
         
         plateView.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview().inset(5)
@@ -52,13 +59,20 @@ class TrivialityListCell: UITableViewCell, Reusable {
         }
         
         titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(iconImageView).offset(5)
             make.leading.equalTo(iconImageView.snp.trailing).offset(10)
-            make.top.equalTo(iconImageView)
+            make.trailing.lessThanOrEqualTo(recordButton.snp.leading).offset(-10)
         }
         
         lastTimeLabel.snp.makeConstraints { make in
             make.leading.equalTo(titleLabel)
-            make.bottom.equalTo(iconImageView)
+            make.trailing.lessThanOrEqualTo(recordButton.snp.leading).offset(-10)
+            make.bottom.equalTo(iconImageView).offset(-5)
+        }
+        
+        recordButton.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().inset(10)
+            make.centerY.equalToSuperview()
         }
     }
     
@@ -66,13 +80,13 @@ class TrivialityListCell: UITableViewCell, Reusable {
         iconImageView.image = UIImage(named: self.model?.icon ?? "")
         titleLabel.text = self.model?.title
         
-        if let lastRecodeTime = model?.lastRecodeTime, lastRecodeTime >= 0 {
+        if let lastRecodeTime = model?.lastRecodeTime, lastRecodeTime > 0 {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy年MM月dd日"
             let date = Date(timeIntervalSince1970: lastRecodeTime)
             lastTimeLabel.text = "上次记录：\(dateFormatter.string(from: date))"
         } else {
-            lastTimeLabel.text = "暂未记录"
+            lastTimeLabel.text = "点击右侧按钮新增一条记录吧~"
         }
     }
     
@@ -108,5 +122,21 @@ class TrivialityListCell: UITableViewCell, Reusable {
         label.font = 12.font
         return label
     }()
+    
+    private lazy var recordButton: UIButton = {
+        let image = UIImage(systemName: "square.and.pencil.circle.fill")?.withTintColor(Theme.textColor.primary, renderingMode: .alwaysOriginal).resized(to: CGSize(width: 30, height: 30))
+        let button = UIButton()
+        button.setImage(image, for: .normal)
+        button.addTarget(self, action: #selector(didTapRecordButton(_:)), for: .touchUpInside)
+        return button
+    }()
 
+}
+
+// MARK: - Action
+extension TrivialityListCell {
+    
+    @objc private func didTapRecordButton(_ sender: UIButton) {
+        self.delegate?.trivialityListCellDidSelectRecord(self)
+    }
 }

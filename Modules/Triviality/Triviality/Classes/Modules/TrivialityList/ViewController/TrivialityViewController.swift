@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import Theme
+import XMKit
 
 class TrivialityViewController: UIViewController {
     
@@ -48,8 +49,8 @@ class TrivialityViewController: UIViewController {
     }()
     
     private lazy var addButton: UIButton = {
-        let image = UIImage(systemName: "plus.circle.fill")?.withTintColor(Theme.textColor.primary, renderingMode: .alwaysOriginal)
-        let button = UIButton(frame: CGRect(origin: .zero, size: CGSize(width: 30, height: 30)))
+        let image = UIImage(systemName: "plus.circle.fill")?.withTintColor(Theme.textColor.primary, renderingMode: .alwaysOriginal).resized(to: CGSize(width: 30, height: 30))
+        let button = UIButton()
         button.setBackgroundImage(image, for: .normal)
         button.addTarget(self, action: #selector(didTapAddButton(_:)), for: .touchUpInside)
         return button
@@ -91,8 +92,17 @@ extension TrivialityViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = self.viewModel.items[indexPath.row]
         let cell: TrivialityListCell = tableView.dequeueReusableCell(for: indexPath)
+        cell.delegate = self
         cell.model = model
         return cell
     }
     
+}
+
+// MARK: - TrivialityListCellDelegate
+extension TrivialityViewController: TrivialityListCellDelegate {
+    func trivialityListCellDidSelectRecord(_ cell: TrivialityListCell) {
+        // TODO: @whaley 添加记录
+        print("whaley log -- 添加记录")
+    }
 }
