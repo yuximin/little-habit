@@ -27,6 +27,24 @@ public enum Theme {
                 return UIColor(red: 48.0 / 255.0, green: 48.0 / 255.0, blue: 48.0 / 255.0, alpha: 1) // #303030
             }
         }
+        
+        public var plate: UIColor {
+            switch Theme.current {
+            case .light:
+                return UIColor(red: 255.0 / 255.0, green: 255.0 / 255.0, blue: 210.0 / 255.0, alpha: 1) // #FAFAD2
+            case .dark:
+                return UIColor(red: 0.0 / 255.0, green: 0.0 / 255.0, blue: 0.0 / 255.0, alpha: 1) // #000000
+            }
+        }
+        
+        public var plateShadow: UIColor {
+            switch Theme.current {
+            case .light:
+                return .black
+            case .dark:
+                return .white
+            }
+        }
     }
     
     public struct TextColor {

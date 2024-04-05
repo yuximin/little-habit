@@ -24,8 +24,8 @@ class TrivialityViewController: UIViewController {
     // MARK: - UI
     
     private func setupUI() {
-        self.view.backgroundColor = Theme.backgroundColor.normal
-        self.navigationController?.navigationBar.barTintColor = Theme.backgroundColor.normal
+        self.view.backgroundColor = Theme.themeColor.normal
+        self.navigationController?.navigationBar.barTintColor = Theme.themeColor.normal
         
         self.navigationItem.title = nil
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: self.titleLabel)
@@ -34,7 +34,7 @@ class TrivialityViewController: UIViewController {
         self.view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
-        }   
+        }
     }
     
     // MARK: - Lazy View
@@ -43,7 +43,7 @@ class TrivialityViewController: UIViewController {
         let label = UILabel()
         label.text = "小事"
         label.textColor = Theme.textColor.primary
-        label.font = 20.font(weight: .semibold)
+        label.font = Theme.font.navTitle
         return label
     }()
     

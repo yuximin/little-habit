@@ -6,22 +6,20 @@
 //
 
 import UIKit
+import Theme
+import XMKit
+import SnapKit
 
 class TrivialityEditorViewController: UIViewController {
     
-    enum EditorType {
-        case create
-        case modify(model: TrivialityItemModel)
-    }
-    
     var saveAction: ((TrivialityItemModel) -> Void)?
     
-    private let editorType: EditorType
+    private let viewModel: TrivialityEditorViewModel
     
     // MARK: - Lifecycle
     
-    init(editorType: EditorType) {
-        self.editorType = editorType
+    init(editorType: TrivialityEditorType) {
+        self.viewModel = TrivialityEditorViewModel(editorType: editorType)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -38,7 +36,7 @@ class TrivialityEditorViewController: UIViewController {
     // MARK: - UI
     
     private func setupUI() {
-        self.view.backgroundColor = "#FFF8E7".color
+        self.view.backgroundColor = Theme.themeColor.normal
         
         self.view.addSubview(topBar)
         topBar.addSubview(closeButton)
@@ -47,14 +45,15 @@ class TrivialityEditorViewController: UIViewController {
         self.view.addSubview(tableView)
         
         topBar.snp.makeConstraints { make in
-            make.top.leading.trailing.equalToSuperview()
+            make.top.equalToSuperview().inset(10)
+            make.leading.trailing.equalToSuperview()
             make.height.equalTo(44)
         }
         
         closeButton.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(15)
             make.centerY.equalToSuperview()
-            make.size.equalTo(CGSize(width: 44, height: 44))
+            make.size.equalTo(CGSize(width: 26, height: 26))
         }
         
         saveButton.snp.makeConstraints { make in
@@ -83,7 +82,7 @@ class TrivialityEditorViewController: UIViewController {
     
     private lazy var closeButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .red.withAlphaComponent(0.5)
+        button.setBackgroundImage(Theme.image.navBarClose, for: .normal)
         button.addTarget(self, action: #selector(didTapCloseButton(_:)), for: .touchUpInside)
         return button
     }()
@@ -91,16 +90,16 @@ class TrivialityEditorViewController: UIViewController {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "编辑小事"
-        label.textColor = "#333333".color
-        label.font = 20.font(weight: .bold)
+        label.textColor = Theme.textColor.primary
+        label.font = Theme.font.navTitle
         return label
     }()
     
     private lazy var saveButton: UIButton = {
         let button = UIButton()
         button.setTitle("保存", for: .normal)
-        button.setTitleColor("#333333".color, for: .normal)
-        button.titleLabel?.font = 16.font
+        button.setTitleColor(Theme.textColor.primary, for: .normal)
+        button.titleLabel?.font = Theme.font.navItem
         button.addTarget(self, action: #selector(didTapSaveButton(_:)), for: .touchUpInside)
         return button
     }()
@@ -109,6 +108,10 @@ class TrivialityEditorViewController: UIViewController {
         let tableView = UITableView()
         tableView.separatorStyle = .none
         tableView.backgroundColor = .clear
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(reusableCell: TrivialityEditorIconCell.self)
+        tableView.register(reusableCell: TrivialityEditorTextFieldCell.self)
         return tableView
     }()
 
@@ -121,9 +124,65 @@ extension TrivialityEditorViewController {
     }
     
     @objc private func didTapSaveButton(_ sender: UIButton) {
-        let time = Date().timeIntervalSince1970
-        let item = TrivialityItemModel(id: "\(time)", icon: "", title: "小事", description: "记录记录", lastRecodeTime: time)
-        self.saveAction?(item)
-        self.dismiss(animated: true)
+        let editorItemValues = getAllEditorItemValues()
+        self.viewModel.executeSave(editorItemValues: editorItemValues) { success, error, item in
+            guard success, let item else {
+                print("error:", error?.localizedDescription ?? "no reasonal")
+                return
+            }
+            
+            self.saveAction?(item)
+            self.dismiss(animated: true)
+        }
+    }
+}
+
+// MARK: - Private
+private extension TrivialityEditorViewController {
+    
+    func getAllEditorItemValues() -> [TrivialityEditorItem: Any?] {
+        var values: [TrivialityEditorItem: Any?] = [:]
+        for item in self.viewModel.editorItems {
+            let value = self.getEditorItemValue(for: item)
+            values[item] = value
+        }
+        return values
+    }
+    
+    func getEditorItemValue(for item: TrivialityEditorItem) -> Any? {
+        guard let index = self.viewModel.editorItems.firstIndex(of: item),
+              let cell = self.tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? TrivialityEditorCell else {
+            return nil
+        }
+        
+        return cell.editorItemValue
+    }
+}
+
+// MARK: - UITableViewDataSource, UITableViewDelegate
+extension TrivialityEditorViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        self.viewModel.editorItems.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let editorItem = self.viewModel.editorItems[indexPath.row]
+        switch editorItem {
+        case .icon:
+            let cell: TrivialityEditorIconCell = tableView.dequeueReusableCell(for: indexPath)
+            return cell
+        case .title:
+            let cell: TrivialityEditorTextFieldCell = tableView.dequeueReusableCell(for: indexPath)
+            cell.placeholder = "给小事取个名字吧~"
+            return cell
+        case .description:
+            let cell: TrivialityEditorTextFieldCell = tableView.dequeueReusableCell(for: indexPath)
+            cell.placeholder = "给小事添加一段描述吧~"
+            return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        self.viewModel.editorItems[indexPath.row].cellHeight
     }
 }
