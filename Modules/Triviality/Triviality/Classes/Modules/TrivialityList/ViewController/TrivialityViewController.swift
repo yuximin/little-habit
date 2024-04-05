@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Theme
 
 class TrivialityViewController: UIViewController {
     
@@ -23,8 +24,8 @@ class TrivialityViewController: UIViewController {
     // MARK: - UI
     
     private func setupUI() {
-        self.view.backgroundColor = "#FFF8E7".color
-        self.navigationController?.navigationBar.barTintColor = "#FFF8E7".color
+        self.view.backgroundColor = Theme.backgroundColor.normal
+        self.navigationController?.navigationBar.barTintColor = Theme.backgroundColor.normal
         
         self.navigationItem.title = nil
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: self.titleLabel)
@@ -33,7 +34,7 @@ class TrivialityViewController: UIViewController {
         self.view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
-        }
+        }   
     }
     
     // MARK: - Lazy View
@@ -41,13 +42,13 @@ class TrivialityViewController: UIViewController {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "小事"
-        label.textColor = "#333333".color
+        label.textColor = Theme.textColor.primary
         label.font = 20.font(weight: .semibold)
         return label
     }()
     
     private lazy var addButton: UIButton = {
-        let image = UIImage(systemName: "plus.circle.fill")?.withTintColor("#000000".color, renderingMode: .alwaysOriginal)
+        let image = UIImage(systemName: "plus.circle.fill")?.withTintColor(Theme.textColor.primary, renderingMode: .alwaysOriginal)
         let button = UIButton(frame: CGRect(origin: .zero, size: CGSize(width: 30, height: 30)))
         button.setBackgroundImage(image, for: .normal)
         button.addTarget(self, action: #selector(didTapAddButton(_:)), for: .touchUpInside)
@@ -59,6 +60,7 @@ class TrivialityViewController: UIViewController {
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
         tableView.rowHeight = 80
+        tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(reusableCell: TrivialityListCell.self)
@@ -70,11 +72,12 @@ class TrivialityViewController: UIViewController {
 // MARK: - Action
 extension TrivialityViewController {
     @objc private func didTapAddButton(_ sender: UIButton) {
-        let index = self.viewModel.items.count
-        let time = Date().timeIntervalSince1970
-        let item = TrivialityItemModel(id: "\(index)", icon: "", title: "小事\(index)", description: "记录记录", lastRecodeTime: time)
-        self.viewModel.addItem(item)
-        self.tableView.reloadData()
+        let viewController = TrivialityEditorViewController(editorType: .create)
+        viewController.saveAction = { [weak self] model in
+            self?.viewModel.addItem(model)
+            self?.tableView.reloadData()
+        }
+        self.present(viewController, animated: true)
     }
 }
 

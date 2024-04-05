@@ -10,8 +10,10 @@ PODS:
   - Mediator-Triviality (0.1.0):
     - Mediator
   - SnapKit (5.7.1)
+  - Theme (0.1.0)
   - Triviality (0.1.0):
     - SnapKit
+    - Theme
     - XMKit
   - XMKit (0.1.7)
 
@@ -21,6 +23,7 @@ DEPENDENCIES:
   - Mediator-Hall (from `./Modules/Mediator-Hall/`)
   - Mediator-Triviality (from `./Modules/Mediator-Triviality/`)
   - SnapKit
+  - Theme (from `./Frameworks/Theme/`)
   - Triviality (from `./Modules/Triviality/`)
   - XMKit
 
@@ -39,6 +42,8 @@ EXTERNAL SOURCES:
     :path: "./Modules/Mediator-Hall/"
   Mediator-Triviality:
     :path: "./Modules/Mediator-Triviality/"
+  Theme:
+    :path: "./Frameworks/Theme/"
   Triviality:
     :path: "./Modules/Triviality/"
 
@@ -48,9 +53,10 @@ SPEC CHECKSUMS:
   Mediator-Hall: b1afa62aef2493c49a3db8312b550c51f3c43d02
   Mediator-Triviality: bb6ab3ecb3094cd19a717474fefe5ad497f2b67e
   SnapKit: d612e99e678a2d3b95bf60b0705ed0a35c03484a
-  Triviality: 526dc439f2b87363a1fb515c0db0dc9a9fa0d8b4
+  Theme: ea75f05324c70bb7cc7263b16c5fd46fab525a0e
+  Triviality: 4fdba4596742b49b5858e3830bf792c02ac48125
   XMKit: 45a7ed224bf4e4ed128318ced48764f5622f9f13
 
-PODFILE CHECKSUM: 02d96b761c132a6e90ac5d8d43b623f266fec7a2
+PODFILE CHECKSUM: 7701aefbbe450df7c3ac78397a2d8ef4c5398df9
 
 COCOAPODS: 1.15.2

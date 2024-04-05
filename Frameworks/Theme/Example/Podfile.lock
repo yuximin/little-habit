@@ -1,0 +1,16 @@
+PODS:
+  - Theme (0.1.0)
+
+DEPENDENCIES:
+  - Theme (from `../`)
+
+EXTERNAL SOURCES:
+  Theme:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Theme: ea75f05324c70bb7cc7263b16c5fd46fab525a0e
+
+PODFILE CHECKSUM: d7a01a80cb6867b00b8edcb18dd7d75bae9c6fbf
+
+COCOAPODS: 1.15.2

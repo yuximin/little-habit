@@ -9,6 +9,7 @@ target 'little-habit' do
 
   # Development Pods
   pod 'Mediator', :path => './Frameworks/Mediator/'
+  pod 'Theme', :path => './Frameworks/Theme/'
   
   # Modules
   pod 'Hall', :path => './Modules/Hall/'

@@ -7,6 +7,7 @@
 
 import UIKit
 import XMKit
+import Theme
 
 class TrivialityListCell: UITableViewCell, Reusable {
     
@@ -95,7 +96,7 @@ class TrivialityListCell: UITableViewCell, Reusable {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "一件小事"
-        label.textColor = "#333333".color
+        label.textColor = Theme.textColor.primary
         label.font = 14.font(weight: .semibold)
         return label
     }()
@@ -103,7 +104,7 @@ class TrivialityListCell: UITableViewCell, Reusable {
     private lazy var lastTimeLabel: UILabel = {
         let label = UILabel()
         label.text = "上次记录：2024年3月28日"
-        label.textColor = "#666666".color
+        label.textColor = Theme.textColor.secondary
         label.font = 12.font
         return label
     }()
