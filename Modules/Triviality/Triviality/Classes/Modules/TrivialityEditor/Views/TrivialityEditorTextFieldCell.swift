@@ -64,8 +64,9 @@ class TrivialityEditorTextFieldCell: UITableViewCell, Reusable, TrivialityEditor
         let view = UIView()
         view.backgroundColor = Theme.themeColor.plate
         view.layer.cornerRadius = 25
+        view.layer.shadowOffset = .zero
         view.layer.shadowColor = Theme.themeColor.plateShadow.cgColor
-        view.layer.shadowOpacity = 0.1
+        view.layer.shadowOpacity = 0.2
         return view
     }()
     
