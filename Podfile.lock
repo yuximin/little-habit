@@ -1,10 +1,18 @@
 PODS:
+  - Habit (0.1.0):
+    - Mediator
+    - SnapKit
+    - Theme
+    - XMKit
   - Hall (0.1.0):
     - Mediator
+    - Mediator-Habit
     - Mediator-Triviality
     - SnapKit
     - XMKit
   - Mediator (0.1.0)
+  - Mediator-Habit (0.1.0):
+    - Mediator
   - Mediator-Hall (0.1.0):
     - Mediator
   - Mediator-Triviality (0.1.0):
@@ -18,8 +26,10 @@ PODS:
   - XMKit (0.1.8)
 
 DEPENDENCIES:
+  - Habit (from `./Modules/Habit/`)
   - Hall (from `./Modules/Hall/`)
   - Mediator (from `./Frameworks/Mediator/`)
+  - Mediator-Habit (from `./Modules/Mediator-Habit/`)
   - Mediator-Hall (from `./Modules/Mediator-Hall/`)
   - Mediator-Triviality (from `./Modules/Mediator-Triviality/`)
   - SnapKit
@@ -34,10 +44,14 @@ SPEC REPOS:
     - XMKit
 
 EXTERNAL SOURCES:
+  Habit:
+    :path: "./Modules/Habit/"
   Hall:
     :path: "./Modules/Hall/"
   Mediator:
     :path: "./Frameworks/Mediator/"
+  Mediator-Habit:
+    :path: "./Modules/Mediator-Habit/"
   Mediator-Hall:
     :path: "./Modules/Mediator-Hall/"
   Mediator-Triviality:
@@ -48,8 +62,10 @@ EXTERNAL SOURCES:
     :path: "./Modules/Triviality/"
 
 SPEC CHECKSUMS:
-  Hall: 59f5f4faf2312d99cbd9d7b81167500f065cf1ba
+  Habit: 2715fe5b23256e427133d4c2d4c773350fb87991
+  Hall: 697dcdcd3533c4762c43e47f2c92fc0ae7ab26af
   Mediator: f8df91015aaf7521b72954fc0d07cbdf738aa7e3
+  Mediator-Habit: ea80d1875da813143c3c88bd845f16cf5f727139
   Mediator-Hall: b1afa62aef2493c49a3db8312b550c51f3c43d02
   Mediator-Triviality: bb6ab3ecb3094cd19a717474fefe5ad497f2b67e
   SnapKit: d612e99e678a2d3b95bf60b0705ed0a35c03484a
@@ -57,6 +73,6 @@ SPEC CHECKSUMS:
   Triviality: 4fdba4596742b49b5858e3830bf792c02ac48125
   XMKit: 11297558e31abdb4cc17c8eef1025c6051ec537f
 
-PODFILE CHECKSUM: 7701aefbbe450df7c3ac78397a2d8ef4c5398df9
+PODFILE CHECKSUM: 3fd1927e5ce465c61cbcf7ee3af86fcbd5e7f5e6
 
 COCOAPODS: 1.15.2

@@ -1,0 +1,16 @@
+PODS:
+  - Habit (0.1.0)
+
+DEPENDENCIES:
+  - Habit (from `../`)
+
+EXTERNAL SOURCES:
+  Habit:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Habit: 78b5dd5dfdca0df44b03699c04a63cd020ccf61f
+
+PODFILE CHECKSUM: 4150da6cc626d3035df102dc127c496f215c21ce
+
+COCOAPODS: 1.15.2

@@ -1,0 +1,16 @@
+PODS:
+  - Mediator-Habit (0.1.0)
+
+DEPENDENCIES:
+  - Mediator-Habit (from `../`)
+
+EXTERNAL SOURCES:
+  Mediator-Habit:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Mediator-Habit: f1a661ca53eaa6e56060ef77e98f4aaac0f198e7
+
+PODFILE CHECKSUM: 1f1ebe7ff927f37d82052db6dcd10910e5d19de6
+
+COCOAPODS: 1.15.2

@@ -7,6 +7,7 @@
 
 import UIKit
 import Mediator
+import Mediator_Habit
 import Mediator_Triviality
 
 class HallTabBarViewController: UITabBarController {
@@ -33,8 +34,7 @@ class HallTabBarViewController: UITabBarController {
             let viewController: UIViewController
             switch item {
             case .habit:
-                viewController = UIViewController()
-                viewController.view.backgroundColor = .white
+                viewController = Mediator.shared.habit.habitViewController()
             case .triviality:
                 viewController = Mediator.shared.triviality.trivialityViewController()
             case .me:
