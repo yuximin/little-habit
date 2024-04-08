@@ -170,14 +170,17 @@ extension TrivialityEditorViewController: UITableViewDataSource, UITableViewDele
         switch editorItem {
         case .icon:
             let cell: TrivialityEditorIconCell = tableView.dequeueReusableCell(for: indexPath)
+            cell.icon = UIImage(named: self.viewModel.trivialityItem?.icon ?? "")
             return cell
         case .title:
             let cell: TrivialityEditorTextFieldCell = tableView.dequeueReusableCell(for: indexPath)
             cell.placeholder = "给小事取个名字吧~"
+            cell.text = self.viewModel.trivialityItem?.title
             return cell
         case .description:
             let cell: TrivialityEditorTextFieldCell = tableView.dequeueReusableCell(for: indexPath)
             cell.placeholder = "给小事添加一段描述吧~"
+            cell.text = self.viewModel.trivialityItem?.description
             return cell
         }
     }

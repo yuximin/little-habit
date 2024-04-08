@@ -20,6 +20,11 @@ class TrivialityEditorTextFieldCell: UITableViewCell, Reusable, TrivialityEditor
         }
     }
     
+    var text: String? {
+        get { textField.text }
+        set { textField.text = newValue }
+    }
+    
     // MARK: - Lifecycle
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

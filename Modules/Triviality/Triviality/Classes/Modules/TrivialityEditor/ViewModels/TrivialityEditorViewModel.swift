@@ -17,7 +17,7 @@ class TrivialityEditorViewModel {
     
     let editorItems: [TrivialityEditorItem] = [.icon, .title, .description]
     
-    private var trivialityItem: TrivialityItemModel?
+    private(set) var trivialityItem: TrivialityItemModel?
     
     init(editorType: TrivialityEditorType) {
         self.editorType = editorType

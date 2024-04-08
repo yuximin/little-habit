@@ -13,4 +13,14 @@ class TrivialityViewModel {
     func addItem(_ item: TrivialityItemModel) {
         self.items.append(item)
     }
+    
+    func removeItem(_ item: TrivialityItemModel) {
+        self.items.removeAll { $0 == item }
+    }
+    
+    func updateItem(_ item: TrivialityItemModel) {
+        guard let index = self.items.firstIndex(of: item) else { return }
+        
+        self.items[index] = item
+    }
 }

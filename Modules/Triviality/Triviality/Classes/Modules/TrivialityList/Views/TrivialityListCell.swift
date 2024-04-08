@@ -73,6 +73,7 @@ class TrivialityListCell: UITableViewCell, Reusable {
         recordButton.snp.makeConstraints { make in
             make.trailing.equalToSuperview().inset(10)
             make.centerY.equalToSuperview()
+            make.size.equalTo(CGSize(width: 40, height: 40))
         }
     }
     
@@ -138,5 +139,17 @@ extension TrivialityListCell {
     
     @objc private func didTapRecordButton(_ sender: UIButton) {
         self.delegate?.trivialityListCellDidSelectRecord(self)
+    }
+}
+
+// MARK: - Interface
+extension TrivialityListCell {
+    func setInteractionDelegate(_ delegate: UIContextMenuInteractionDelegate) {
+        for interaction in self.plateView.interactions {
+            self.plateView.removeInteraction(interaction)
+        }
+        
+        let interaction = UIContextMenuInteraction(delegate: delegate)
+        self.plateView.addInteraction(interaction)
     }
 }

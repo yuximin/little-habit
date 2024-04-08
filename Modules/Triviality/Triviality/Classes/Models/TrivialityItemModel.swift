@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TrivialityItemModel {
+struct TrivialityItemModel: Equatable {
     let id: String
     var icon: String
     var title: String
@@ -25,5 +25,9 @@ struct TrivialityItemModel {
         self.createTime = now
         self.lastUpdateTime = now
         self.lastRecodeTime = 0
+    }
+    
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        return lhs.id == rhs.id
     }
 }

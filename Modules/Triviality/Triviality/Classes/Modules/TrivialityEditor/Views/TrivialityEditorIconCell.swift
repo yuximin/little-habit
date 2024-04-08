@@ -13,6 +13,12 @@ class TrivialityEditorIconCell: UITableViewCell, Reusable, TrivialityEditorCell 
     
     var editorItemValue: Any? { "图标名称" }
     
+    var icon: UIImage? {
+        didSet {
+            iconImageView.image = icon
+        }
+    }
+    
     // MARK: - Lifecycle
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

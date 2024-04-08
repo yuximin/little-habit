@@ -82,6 +82,29 @@ extension TrivialityViewController {
     }
 }
 
+// MARK: - Private
+private extension TrivialityViewController {
+    
+    func detailTriviality(model: TrivialityItemModel) {
+        let viewController = TrivialityDetailViewController()
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func editorTriviality(model: TrivialityItemModel) {
+        let viewController = TrivialityEditorViewController(editorType: .modify(model: model))
+        viewController.saveAction = { [weak self] model in
+            self?.viewModel.updateItem(model)
+            self?.tableView.reloadData()
+        }
+        self.present(viewController, animated: true)
+    }
+    
+    func deleteTriviality(model: TrivialityItemModel) {
+        self.viewModel.removeItem(model)
+        self.tableView.reloadData()
+    }
+}
+
 // MARK: - UITableViewDataSource, UITableViewDelegate
 extension TrivialityViewController: UITableViewDataSource, UITableViewDelegate {
     
@@ -93,8 +116,14 @@ extension TrivialityViewController: UITableViewDataSource, UITableViewDelegate {
         let model = self.viewModel.items[indexPath.row]
         let cell: TrivialityListCell = tableView.dequeueReusableCell(for: indexPath)
         cell.delegate = self
+        cell.setInteractionDelegate(self)
         cell.model = model
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let model = self.viewModel.items[indexPath.row]
+        self.detailTriviality(model: model)
     }
     
 }
@@ -105,4 +134,29 @@ extension TrivialityViewController: TrivialityListCellDelegate {
         // TODO: @whaley 添加记录
         print("whaley log -- 添加记录")
     }
+}
+
+// MARK: - UIContextMenuInteractionDelegate
+extension TrivialityViewController: UIContextMenuInteractionDelegate {
+    
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+        let cell = interaction.view?.superview?.superview as? TrivialityListCell
+        let model = cell?.model
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { suggestedActions in
+            let detailAction = UIAction(title: "查看详情") { action in
+                guard let model else { return }
+                self.detailTriviality(model: model)
+            }
+            let editorAction = UIAction(title: "编辑") { action in
+                guard let model else { return }
+                self.editorTriviality(model: model)
+            }
+            let deleteAction = UIAction(title: "删除") { action in
+                guard let model else { return }
+                self.deleteTriviality(model: model)
+            }
+            return UIMenu(children: [detailAction, editorAction, deleteAction])
+        }
+    }
+    
 }
